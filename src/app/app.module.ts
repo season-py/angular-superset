@@ -1,18 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DatabasesComponent } from './databases/databases.component';
+import { TablesComponent } from './tables/tables.component';
+import { SlicesComponent } from './slices/slices.component';
+import { DashboardsComponent } from './dashboards/dashboards.component';
+import { ChartsComponent } from './charts/charts.component';
 
+import { DatabaseService } from './database.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { DatabaseDetailComponent } from './database-detail/database-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DatabasesComponent,
+    TablesComponent,
+    SlicesComponent,
+    DashboardsComponent,
+    ChartsComponent,
+    DatabaseDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+	FormsModule,
+    AppRoutingModule,
+    NgZorroAntdModule.forRoot(),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
-  providers: [],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+<div *ngIf="database">
+  <h2>{{ database.verbose | uppercase }} Details</h2>
+  <div><span>id: </span>{{database.id}}</div>
+  <div>
+    <label>verbose:
+      <input [(ngModel)]="database.verbose" placeholder="verbose"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>
