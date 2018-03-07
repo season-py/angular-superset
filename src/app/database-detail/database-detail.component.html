@@ -3,9 +3,13 @@
   <div><span>id: </span>{{database.id}}</div>
   <div>
     <label>verbose:
-      <input [(ngModel)]="database.verbose" placeholder="verbose"/>
+      <input [(ngModel)]="database.verbose" nz-input>
     </label>
   </div>
-  <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+  <button (click)="goBack()" nz-button [nzType]="'default'">
+    <span>Go Back</span>
+  </button>
+  <button (click)="save()" nz-button [nzType]="'default'">
+    <span>Save</span>
+  </button>
 </div>
