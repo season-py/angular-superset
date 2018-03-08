@@ -22,4 +22,9 @@ export class DatabasesComponent implements OnInit {
     this.databaseService.getDatabases()
     .subscribe(databases => this.databases = databases);
   }
+
+  delete_database(database): void {
+    this.databases = this.databases.filter(d => d !== database);
+  }
+  
 }

@@ -20,7 +20,11 @@
         <span>
           <a routerLink="/database/{{database.id}}"><i class="anticon anticon-edit"></i></a>
           <span nz-table-divider></span>
-          <i class="anticon anticon-delete"></i>
+          <a routerLink="/database/{{database.id}}/explore"><i class="anticon anticon-link"></i></a>
+          <span nz-table-divider></span>
+          <nz-popconfirm [nzTitle]="'确定删除？'" (nzOnConfirm)="delete_database(database)">
+            <a nz-popconfirm><i class="anticon anticon-delete"></i></a>
+          </nz-popconfirm>
         </span>
       </td>
     </tr>

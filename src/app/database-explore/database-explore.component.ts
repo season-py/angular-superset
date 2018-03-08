@@ -13,11 +13,11 @@ import { Database } from '../database';
 import { DatabaseService } from '../database.service';
 
 @Component({
-  selector: 'app-database-detail',
-  templateUrl: './database-detail.component.html',
-  styleUrls: ['./database-detail.component.css']
+  selector: 'app-database-explore',
+  templateUrl: './database-explore.component.html',
+  styleUrls: ['./database-explore.component.css']
 })
-export class DatabaseDetailComponent implements OnInit {
+export class DatabaseExploreComponent implements OnInit {
 
   @Input() database: Database;
   validateForm: FormGroup;

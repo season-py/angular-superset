@@ -17,6 +17,7 @@ import { DatabaseService } from './database.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { DatabaseDetailComponent } from './database-detail/database-detail.component';
+import { DatabaseExploreComponent } from './database-explore/database-explore.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DatabaseDetailComponent } from './database-detail/database-detail.compo
     SlicesComponent,
     DashboardsComponent,
     ChartsComponent,
-    DatabaseDetailComponent
+    DatabaseDetailComponent,
+    DatabaseExploreComponent
   ],
   imports: [
     BrowserModule,
