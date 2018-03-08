@@ -1,15 +1,94 @@
 <div *ngIf="database">
-  <h2>{{ database.verbose | uppercase }} Details</h2>
-  <div><span>id: </span>{{database.id}}</div>
-  <div>
-    <label>verbose:
-      <input [(ngModel)]="database.verbose" nz-input>
-    </label>
-  </div>
-  <button (click)="goBack()" nz-button [nzType]="'default'">
-    <span>Go Back</span>
-  </button>
-  <button (click)="save()" nz-button [nzType]="'default'">
-    <span>Save</span>
-  </button>
+  <form nz-form [nzType]="'horizontal'" [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Verbose</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input formControlName="verbose" [nzSize]="'large'"></nz-input>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Host</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input formControlName="host" [nzSize]="'large'"></nz-input>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Port</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input-number formControlName="port" [nzSize]="'large'" [nzStep]="1" [nzMax]="99999" [nzMin]="1"></nz-input-number>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Username</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input formControlName="username" [nzSize]="'large'"></nz-input>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Password</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input formControlName="password" [nzSize]="'large'"></nz-input>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="6">
+        <label>Schema</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10">
+        <nz-input formControlName="schema" [nzSize]="'large'"></nz-input>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row *ngFor="let control of controlArray;let i = index">
+      <div nz-form-label nz-col [nzSpan]="6" *ngIf="i==0">
+        <label [attr.for]="control.controlKeyInstance">Properties</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="10" [nzOffset]="i==0?0:6">
+        <nz-input-group [nzSize]="'large'">
+          <nz-input
+            style="width: 40%"
+            [nzSize]="'large'"
+            [nzPlaceHolder]="'key'"
+            [formControlName]="control.controlKeyInstance"
+            [nzId]="control.key">
+          </nz-input>
+          <nz-input
+            style="width: 60%"
+            [nzSize]="'large'"
+            [nzPlaceHolder]="'value'"
+            [formControlName]="control.controlValInstance"
+            [nzId]="control.val">
+          </nz-input>
+          <i class="anticon anticon-minus-circle-o dynamic-delete-button" (click)="removeField(control,$event)"></i>
+          <div nz-form-explain
+            *ngIf="getFormControl(control.controlInstance)?.dirty&&getFormControl(control.controlInstance)?.hasError('required')">
+            Please input passenger's name or delete this field.
+          </div>
+        </nz-input-group>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-control nz-col [nzSpan]="10" [nzOffset]="6">
+        <button nz-button [nzType]="'dashed'" [nzSize]="'large'" style="width:60%" (click)="addField($event)">
+          <i class="anticon anticon-plus"></i>
+          <span> Add field</span>
+        </button>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="6">
+        <button nz-button [nzType]="'submit'" [nzSize]="'large'">Submit</button>
+      </div>
+    </div>
+  </form>
 </div>

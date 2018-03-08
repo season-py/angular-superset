@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -29,7 +30,9 @@ import { DatabaseDetailComponent } from './database-detail/database-detail.compo
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
 	FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NgZorroAntdModule.forRoot(),
     HttpClientModule,
